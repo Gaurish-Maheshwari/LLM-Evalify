@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM-Evalify | AI-Powered Evaluation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LLM-Evalify</h1>
+            <p>An AI-powered framework to evaluate Large Language Model responses.</p>
+        </header>
+
+        <main>
+            <form id="evaluation-form">
+                <div class="input-group">
+                    <label for="prompt">Original Prompt</label>
+                    <textarea id="prompt" name="prompt" rows="5" placeholder="Enter the prompt given to the LLM..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="response">LLM's Response</label>
+                    <textarea id="response" name="response" rows="10" placeholder="Paste the LLM's full response here..."></textarea>
+                </div>
+                <button type="submit" id="submit-btn">Evaluate</button>
+            </form>
+
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>AI Judge is thinking...</p>
+            </div>
+
+            <div id="results-container" class="hidden">
+                <h2>Evaluation Results</h2>
+                
+                <div class="chart-container">
+                    <canvas id="resultsChart"></canvas>
+                </div>
+
+                <div class="overall-score-card">
+                    <h3>Overall Score</h3>
+                    <p id="overall-score">8.5</p>
+                </div>
+                <div id="detailed-results">
+                    </div>
+            </div>
+             <div id="error-container" class="hidden"></div>
+        </main>
+
+        <footer>
+            <p>Built for the e6data x IIT-BHU Hackathon</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
