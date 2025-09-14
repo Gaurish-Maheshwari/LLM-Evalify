@@ -62,6 +62,6 @@ Instead of training a separate evaluation model, we use **advanced prompt engine
 
 ---
 ## Limitations
-- When 
+- When we press the **Evaluate** button, 4 requests are sent to the Gemini API.Free tier of Gemini API can handle around 60 requests per minute. Hence we can only press the Evaluate button <= 15 times per minute. This can be improved by using Paid Gemini API which will make the app scalable.
 
 
