@@ -12,8 +12,8 @@ An **AI-powered framework** for the transparent and creative evaluation of Large
 - **AI-Powered Judge**  
   Leverages the **Google Gemini 1.5 Flash** model as an expert evaluator, eliminating the need for brittle, rule-based systems.
 
-- **Novel Evaluation Metrics**  
-  Introduces a custom **Brevity vs. Completeness** score to evaluate an answer's efficiency.
+- **4 Evaluation Metrics**  
+  Uses 4 different evaluation metrics **Hallucination**, **Coherence**, **Brevity vs Completeness** and **Instruction Following**. The more each of the score is the better performing the model is.
 
 - **Evidence-Based Scoring**  
   The AI Judge extracts **specific quotes** from the response to justify each score for maximum transparency.
@@ -58,5 +58,10 @@ Instead of training a separate evaluation model, we use **advanced prompt engine
 | **AI Engine** | Google Gemini API (`gemini-1.5-flash-latest`) |
 | **Frontend** | HTML5, CSS3, JavaScript (ES6+) |
 | **Visualization** | Chart.js |
+|**Deployment**| Vercel |
+
+---
+## Limitations
+- When 
 
 

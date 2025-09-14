@@ -5,22 +5,22 @@ from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-# Load environment variables from .env file
+#Load environment variables from .env file
 load_dotenv()
 
-# Configure the Flask app
+#Configure the Flask app
 app = Flask(__name__)
 
-# Configure the Google Gemini API
+#Google Gemini API
 try:
     genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-    # --- OPTIMIZATION: Using the faster, more efficient Flash model ---
+    # Using Gemini Flash Model
     model = genai.GenerativeModel('gemini-1.5-flash-latest')
 except Exception as e:
     print(f"Error configuring Google Gemini API: {e}")
     model = None
 
-# --- UPGRADE: Enhanced prompt template with "evidence" requirement ---
+# Defining the meta prompt
 EVALUATION_PROMPT_TEMPLATE = """
 You are an expert AI model evaluator. Your task is to evaluate an AI-generated response based on a given prompt and a specific metric.
 
@@ -51,7 +51,7 @@ You are an expert AI model evaluator. Your task is to evaluate an AI-generated r
 }}
 """
 
-# --- UPGRADE: Added a novel evaluation metric ---
+#defining the evaluation metrics : instruction following, coherence, hallucination detection and brevity vs completeness
 METRICS = {
     "instruction_following": "Does the response accurately and completely follow all instructions in the prompt?",
     "coherence": "Is the response well-structured, logical, and easy to understand?",
@@ -85,7 +85,7 @@ def evaluate_metric(prompt, response, metric, description):
         judge_response = model.generate_content(judge_prompt)
         parsed_output = parse_json_from_string(judge_response.text)
         
-        # --- UPGRADE: More robust parsing for the new fields ---
+        
         if parsed_output and "score" in parsed_output and "justification" in parsed_output and "evidence" in parsed_output:
             return parsed_output
         else:

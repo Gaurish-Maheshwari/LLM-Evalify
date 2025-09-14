@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-container');
     const errorContainer = document.getElementById('error-container');
 
-    // --- NEW: Global variable to hold the chart instance ---
     let myChart = null;
 
     form.addEventListener('submit', async (e) => {
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const displayName = metric.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
-                // --- UPGRADE: Card now includes the evidence block ---
                 card.innerHTML = `
                     <h4>${displayName}</h4>
                     <p class="score">${result.score}/10</p>
@@ -79,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // --- NEW: Code to generate the radar chart ---
         const ctx = document.getElementById('resultsChart').getContext('2d');
         const labels = Object.keys(data)
             .filter(key => key !== 'overall_score')
@@ -89,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(key => key !== 'overall_score')
             .map(key => data[key].score);
 
-        // Destroy previous chart instance if it exists to prevent ghosting
         if (myChart) {
             myChart.destroy();
         }
@@ -102,12 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     label: 'Evaluation Score',
                     data: scores,
                     fill: true,
-                    backgroundColor: 'rgba(74, 144, 226, 0.2)',
-                    borderColor: 'rgb(74, 144, 226)',
-                    pointBackgroundColor: 'rgb(74, 144, 226)',
+                    // --- BRANDING UPDATE: Changed chart colors to purple ---
+                    backgroundColor: 'rgba(131, 56, 236, 0.2)',
+                    borderColor: 'rgb(131, 56, 236)',
+                    pointBackgroundColor: 'rgb(131, 56, 236)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(74, 144, 226)'
+                    pointHoverBorderColor: 'rgb(131, 56, 236)'
                 }]
             },
             options: {
