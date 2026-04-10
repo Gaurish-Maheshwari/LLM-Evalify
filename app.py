@@ -15,7 +15,7 @@ app = Flask(__name__)
 try:
     genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
     # Using Gemini Flash Model
-    model = genai.GenerativeModel('gemini-3-flash')
+    model = genai.GenerativeModel('gemini-3-flash-preview')
 except Exception as e:
     print(f"Error configuring Google Gemini API: {e}")
     model = None
